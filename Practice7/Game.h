@@ -2,23 +2,29 @@
 #define	GAME_H
 
 #include <iostream>
+#include <SFML/Graphics.hpp>>
 
 class Game
 {
 private:
+	sf::VideoMode videomode;
+	sf::RenderWindow render;
+	sf::Texture charTex;
+	sf::Sprite charSprite;
+	bool isRunning = false;
+	int cnt = 0;
 
 public:
 
-	Game() {};
-	~Game() {
-		std::cout << "Game engine destroyed" << std::endl;
-	};
-	void init( ) {};
+	Game();
+	~Game();
+
+	void init(const char* title, int width, int height, bool fullscreenFlag);
 	void handleEvents();
-	void running() {};
 	void update();
-	void render();
+	void renderer();
 	void clean();
+	bool running() const { return isRunning; };
 
 };
 
