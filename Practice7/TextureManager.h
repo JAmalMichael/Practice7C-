@@ -8,7 +8,7 @@ class TextureManager {
 	sf::Sprite charSprite;
 
 public:
-	void loadTexture(const char* tex);
-	void textureMovement();
+	bool loadTexture(const char* texPath);
+	void move(float dx, float dy);
 	sf::Sprite& getSprite();
 };

@@ -1,9 +1,14 @@
 #include "Game.h"
 #include "TextureManager.h"
+#include "GameObj.h"
 
 
 //global level texture manaer intance
 TextureManager textureManager;
+
+//Player & enemy
+GameObj player;
+GameObj enemy;
 
 
 //constructorr
@@ -43,9 +48,18 @@ void Game::init(const char* title, int width, int height, bool fullscreenFlag) {
 		charSprite.setPosition(200, 200);
 	}*/
 
-	textureManager.loadTexture("Char-1.png");
+	/*textureManager.loadTexture("Char-1.png");
+	textureManager.loadTexture("Enemy.png");*/
+
+	player.setPlayer("Char-1.png");
+	player.setPosition(50, 50);
+	enemy.setPlayer("Enemy.png");
+	enemy.setPosition(100, 100);
 	
 };
+
+
+
 void Game::handleEvents() {
 	sf::Event event;
 
@@ -63,11 +77,14 @@ void Game::handleEvents() {
 };
 void Game::update() {
 	cnt++ ;
-	textureManager.textureMovement();
+	player.updateMovement();
+	enemy.updateMovement();
 };
 void Game::renderer() {
 	render.clear(sf::Color::Black);
-	render.draw(textureManager.getSprite()); 
+	/*render.draw(textureManager.getSprite());*/
+	player.draw(render);
+	enemy.draw(render);
 	render.display();
 };
 
