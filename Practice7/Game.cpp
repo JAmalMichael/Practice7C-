@@ -1,4 +1,10 @@
 #include "Game.h"
+#include "TextureManager.h"
+
+
+//global level texture manaer intance
+TextureManager textureManager;
+
 
 //constructorr
 Game::Game() {};
@@ -28,14 +34,17 @@ void Game::init(const char* title, int width, int height, bool fullscreenFlag) {
 	
 	isRunning = true;
 
-	if (!charTex.loadFromFile("Char-1.png")) {
+	/*if (!charTex.loadFromFile("Char-1.png")) {
 		std::cout << "Failed to load texture file" << std::endl;
 	}
 	else {
 		std::cout << "Texture loaded successfully" << std::endl;
 		charSprite.setTexture(charTex);
 		charSprite.setPosition(200, 200);
-	}
+	}*/
+
+	textureManager.loadTexture("Char-1.png");
+	
 };
 void Game::handleEvents() {
 	sf::Event event;
@@ -54,11 +63,11 @@ void Game::handleEvents() {
 };
 void Game::update() {
 	cnt++ ;
-	charSprite.move(0.05f, 0);
+	textureManager.textureMovement();
 };
 void Game::renderer() {
 	render.clear(sf::Color::Black);
-	render.draw(charSprite);
+	render.draw(textureManager.getSprite()); 
 	render.display();
 };
 

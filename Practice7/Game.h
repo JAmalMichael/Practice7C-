@@ -9,8 +9,7 @@ class Game
 private:
 	sf::VideoMode videomode;
 	sf::RenderWindow render;
-	sf::Texture charTex;
-	sf::Sprite charSprite;
+	
 	bool isRunning = false;
 	int cnt = 0;
 
