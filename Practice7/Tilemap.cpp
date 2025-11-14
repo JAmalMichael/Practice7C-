@@ -25,9 +25,9 @@ void TileMap::createMap(int width, int height, int tilesize) {
 	//map for holding the tiles
 	map = {
 		{0,0,0,0,0},
-		{0,0,0,0,0},
-		{0,0,0,0,0},
-		{0,0,0,0,0}
+		{0,1,2,0,0},
+		{0,0,0,1,2},
+		{2,0,0,0,1}
 	};
 
 	tileMap.clear();

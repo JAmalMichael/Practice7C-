@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "GameObj.h"
-
+#include "TileMap.h"
 
 //global level texture manaer intance
 TextureManager textureManager;
@@ -10,6 +10,8 @@ TextureManager textureManager;
 GameObj player;
 GameObj enemy;
 
+//tilemap instace
+TileMap tileMap;
 
 //constructorr
 Game::Game() {};
@@ -50,6 +52,8 @@ void Game::init(const char* title, int width, int height, bool fullscreenFlag) {
 
 	/*textureManager.loadTexture("Char-1.png");
 	textureManager.loadTexture("Enemy.png");*/
+	tileMap.loadTexture();
+	tileMap.createMap(5, 5, 100);
 
 	player.setPlayer("Char-1.png");
 	player.setPosition(50, 50);
@@ -80,8 +84,10 @@ void Game::update() {
 	player.updateMovement();
 	enemy.updateMovement();
 };
+
 void Game::renderer() {
 	render.clear(sf::Color::Black);
+	render.draw(tileMap);
 	/*render.draw(textureManager.getSprite());*/
 	player.draw(render);
 	enemy.draw(render);
